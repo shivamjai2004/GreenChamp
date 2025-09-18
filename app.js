@@ -1,1187 +1,775 @@
-// Application Data
+// Application data
 const appData = {
-  "schools": [
-    {"id": 1, "name": "Government Senior Secondary School, Ludhiana", "points": 15420, "students": 245},
-    {"id": 2, "name": "Punjab School Education Board, Chandigarh", "points": 14890, "students": 189},
-    {"id": 3, "name": "Government High School, Amritsar", "points": 13675, "students": 298},
-    {"id": 4, "name": "Khalsa College Public School, Patiala", "points": 12980, "students": 167},
-    {"id": 5, "name": "Government Senior Secondary School, Jalandhar", "points": 11540, "students": 234}
-  ],
-  "challenges": [
+  users: [
     {
-      "id": 1,
-      "title": "Turn Off Unnecessary Lights",
-      "category": "Energy Conservation",
-      "description": "Switch off lights in unused rooms for one week and document energy savings",
-      "points": 25,
-      "difficulty": "Easy",
-      "icon": "💡",
-      "instructions": "Take before/after photos of rooms with lights off, note electricity meter readings"
+      id: 1,
+      name: "Aarav Sharma",
+      role: "student",
+      level: "Climate Champion",
+      points: 2450,
+      xp: 89,
+      badges: ["Tree Hugger", "Water Saver", "Energy Guardian", "Waste Warrior"],
+      completedChallenges: 15,
+      school: "Delhi Public School",
+      carbonSaved: 150.5
     },
     {
-      "id": 2,
-      "title": "Waste Segregation Champion",
-      "category": "Waste Management", 
-      "description": "Properly segregate household waste into wet, dry, and hazardous categories for 2 weeks",
-      "points": 50,
-      "difficulty": "Medium",
-      "icon": "♻️",
-      "instructions": "Photo document properly segregated waste bins with labels"
+      id: 2,
+      name: "Priya Patel",
+      role: "student",
+      level: "Eco-Expert",
+      points: 1950,
+      xp: 65,
+      badges: ["Green Commuter", "Recycling Hero", "Plant Parent"],
+      completedChallenges: 12,
+      school: "Kendriya Vidyalaya",
+      carbonSaved: 120.8
     },
     {
-      "id": 3,
-      "title": "Plant a Native Tree",
-      "category": "Biodiversity",
-      "description": "Plant and care for a native Punjab tree species like Neem, Banyan, or Mango",
-      "points": 100,
-      "difficulty": "Hard",
-      "icon": "🌳",
-      "instructions": "Document planting process, location, species, and commit to 30-day care routine"
-    },
-    {
-      "id": 4,
-      "title": "Water Conservation Audit",
-      "category": "Water Conservation",
-      "description": "Identify and fix water leaks in your home/school, measure water saved",
-      "points": 75,
-      "difficulty": "Medium",
-      "icon": "💧",
-      "instructions": "Photo document leaks found, repairs made, and water meter difference"
-    },
-    {
-      "id": 5,
-      "title": "Stubble Burning Awareness",
-      "category": "Punjab-Specific",
-      "description": "Create awareness campaign about alternatives to stubble burning in rural areas",
-      "points": 80,
-      "difficulty": "Hard",
-      "icon": "🔥",
-      "instructions": "Design posters/videos about composting, biogas, or other alternatives"
-    },
-    {
-      "id": 6,
-      "title": "Plastic-Free Day Challenge",
-      "category": "Waste Management",
-      "description": "Avoid single-use plastics for 7 consecutive days, use alternatives",
-      "points": 40,
-      "difficulty": "Medium",
-      "icon": "🚫",
-      "instructions": "Daily photos of plastic-free alternatives used (cloth bags, steel bottles, etc.)"
+      id: 3,
+      name: "Rahul Verma",
+      role: "student",
+      level: "Eco-Explorer",
+      points: 850,
+      xp: 30,
+      badges: ["First Steps", "Quiz Master"],
+      completedChallenges: 6,
+      school: "St. Xavier's School",
+      carbonSaved: 45.2
     }
   ],
-  "badges": [
+  challenges: [
     {
-      "id": 1,
-      "name": "First Steps",
-      "description": "Completed your first environmental challenge",
-      "icon": "🎯",
-      "condition": "Complete 1 challenge"
+      id: 1,
+      title: "Plant a Tree Challenge",
+      description: "Plant a tree in your school or community and upload a photo",
+      category: "Tree Planting",
+      points: 200,
+      difficulty: "Medium",
+      timeRequired: "30 minutes",
+      participants: 156,
+      icon: "🌱"
     },
     {
-      "id": 2,
-      "name": "Waste Warrior",
-      "description": "Completed 5 waste management challenges",
-      "icon": "♻️",
-      "condition": "Complete 5 waste challenges"
+      id: 2,
+      title: "Waste Segregation Drive",
+      description: "Organize a waste segregation activity in your locality",
+      category: "Waste Management",
+      points: 150,
+      difficulty: "Easy",
+      timeRequired: "45 minutes",
+      participants: 203,
+      icon: "♻️"
     },
     {
-      "id": 3,
-      "name": "Energy Saver",
-      "description": "Master of energy conservation challenges",
-      "icon": "⚡",
-      "condition": "Complete 3 energy challenges"
+      id: 3,
+      title: "Energy Conservation Week",
+      description: "Monitor and reduce your home's energy consumption for a week",
+      category: "Energy Conservation",
+      points: 250,
+      difficulty: "Hard",
+      timeRequired: "7 days",
+      participants: 89,
+      icon: "⚡"
     },
     {
-      "id": 4,
-      "name": "Tree Friend",
-      "description": "Planted and cared for trees",
-      "icon": "🌳",
-      "condition": "Complete tree planting challenges"
-    },
-    {
-      "id": 5,
-      "name": "Punjab Guardian", 
-      "description": "Champion of Punjab-specific environmental issues",
-      "icon": "🏆",
-      "condition": "Complete 3 Punjab-specific challenges"
+      id: 4,
+      title: "Water Saving Campaign",
+      description: "Implement water-saving techniques and measure impact",
+      category: "Water Conservation",
+      points: 180,
+      difficulty: "Medium",
+      timeRequired: "3 days",
+      participants: 124,
+      icon: "💧"
     }
   ],
-  "levels": [
-    {"name": "Eco-Explorer", "minPoints": 0, "maxPoints": 250, "color": "#90EE90"},
-    {"name": "Green Guardian", "minPoints": 251, "maxPoints": 500, "color": "#32CD32"},
-    {"name": "Climate Champion", "minPoints": 501, "maxPoints": 1000, "color": "#228B22"},
-    {"name": "Earth Protector", "minPoints": 1001, "maxPoints": 9999, "color": "#006400"}
+  courses: [
+    {
+      id: 1,
+      title: "Climate Change Basics",
+      description: "Understanding the science behind climate change",
+      modules: 8,
+      duration: "4 hours",
+      enrolled: 1250,
+      rating: 4.8,
+      difficulty: "Beginner"
+    },
+    {
+      id: 2,
+      title: "Renewable Energy Systems",
+      description: "Explore solar, wind, and other renewable energy sources",
+      modules: 12,
+      duration: "6 hours",
+      enrolled: 890,
+      rating: 4.9,
+      difficulty: "Intermediate"
+    },
+    {
+      id: 3,
+      title: "Sustainable Living Practices",
+      description: "Practical tips for eco-friendly daily life",
+      modules: 10,
+      duration: "5 hours",
+      enrolled: 2100,
+      rating: 4.7,
+      difficulty: "Beginner"
+    }
   ],
-  "sampleStudents": [
-    {"name": "Arjun Singh", "school": "Government Senior Secondary School, Ludhiana", "points": 425, "level": "Green Guardian", "badges": 3},
-    {"name": "Priya Kaur", "school": "Punjab School Education Board, Chandigarh", "points": 680, "level": "Climate Champion", "badges": 5},
-    {"name": "Rohit Kumar", "school": "Government High School, Amritsar", "points": 290, "level": "Green Guardian", "badges": 2}
+  leaderboard: [
+    {
+      rank: 1,
+      name: "Aarav Sharma",
+      school: "Delhi Public School",
+      points: 2450,
+      level: "Climate Champion",
+      badges: 4
+    },
+    {
+      rank: 2,
+      name: "Priya Patel",
+      school: "Kendriya Vidyalaya",
+      points: 1950,
+      level: "Eco-Expert",
+      badges: 3
+    },
+    {
+      rank: 3,
+      name: "Arjun Singh",
+      school: "Modern School",
+      points: 1820,
+      level: "Eco-Expert",
+      badges: 3
+    },
+    {
+      rank: 4,
+      name: "Sneha Gupta",
+      school: "DAV Public School",
+      points: 1650,
+      level: "Green Guardian",
+      badges: 2
+    },
+    {
+      rank: 5,
+      name: "Vikash Kumar",
+      school: "Bloom Public School",
+      points: 1420,
+      level: "Green Guardian",
+      badges: 2
+    }
+  ],
+  badges: [
+    {
+      name: "Tree Hugger",
+      description: "Planted 10+ trees",
+      icon: "🌳",
+      rarity: "Common"
+    },
+    {
+      name: "Water Saver",
+      description: "Saved 1000+ liters of water",
+      icon: "💧",
+      rarity: "Uncommon"
+    },
+    {
+      name: "Energy Guardian",
+      description: "Reduced energy consumption by 20%",
+      icon: "⚡",
+      rarity: "Rare"
+    },
+    {
+      name: "Waste Warrior",
+      description: "Organized 5+ waste management drives",
+      icon: "♻️",
+      rarity: "Epic"
+    },
+    {
+      name: "Green Commuter",
+      description: "Used eco-friendly transport for 30 days",
+      icon: "🚲",
+      rarity: "Common"
+    },
+    {
+      name: "Recycling Hero",
+      description: "Recycled 100+ items",
+      icon: "🔄",
+      rarity: "Uncommon"
+    },
+    {
+      name: "Plant Parent",
+      description: "Maintained a garden for 3 months",
+      icon: "🪴",
+      rarity: "Common"
+    },
+    {
+      name: "First Steps",
+      description: "Completed your first challenge",
+      icon: "👶",
+      rarity: "Common"
+    },
+    {
+      name: "Quiz Master",
+      description: "Scored 100% on 5 quizzes",
+      icon: "🧠",
+      rarity: "Uncommon"
+    }
+  ],
+  chatbotResponses: [
+    {
+      keyword: "climate change",
+      response: "Climate change refers to long-term shifts in temperatures and weather patterns. Human activities have been the main driver since the 1800s. Would you like to learn about specific impacts or solutions?"
+    },
+    {
+      keyword: "renewable energy",
+      response: "Renewable energy comes from natural sources that replenish themselves, like solar, wind, and hydro power. These are crucial for reducing carbon emissions. Which type interests you most?"
+    },
+    {
+      keyword: "career",
+      response: "There are many exciting green careers! Environmental engineering, renewable energy technology, sustainability consulting, and climate research are growing fields. What's your main interest area?"
+    },
+    {
+      keyword: "challenges",
+      response: "Great question! You can participate in tree planting, waste segregation, energy conservation, and water saving challenges. Each one earns you points and badges. Which challenge would you like to start with?"
+    }
   ]
 };
 
-// Application State
-let currentUser = null;
-let currentView = 'landing-page';
-let currentChallenge = null;
-let selectedPhoto = null;
-let userProgress = {
-  points: 0,
-  completedChallenges: [],
-  earnedBadges: [],
-  level: 'Eco-Explorer'
-};
+// Application state
+let currentUser = appData.users[0]; // Default to Aarav Sharma
+let currentRole = 'student';
+let selectedChallenge = null;
 
-// DOM Elements - Safe element selection
-function getElement(id) {
-  return document.getElementById(id);
-}
-
-// MODAL FUNCTIONALITY - FIXED IMPLEMENTATION
-function openModal(modalId) {
-  const modal = getElement(modalId);
-  if (modal) {
-    modal.classList.add('modal--open');
-    console.log(`Modal opened: ${modalId}`);
-  }
-}
-
-function closeModal(modalId) {
-  const modal = getElement(modalId);
-  if (modal) {
-    modal.classList.remove('modal--open');
-    console.log(`Modal closed: ${modalId}`);
-  }
-}
-
-function closeAllModals() {
-  const modals = document.querySelectorAll('.modal');
-  modals.forEach(modal => {
-    modal.classList.remove('modal--open');
-  });
-  console.log('All modals closed');
-}
-
-// Initialize Application
+// Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('EcoLearn App Initializing...');
-  
-  // Initialize app state
-  loadUserFromStorage();
-  
-  // Populate school dropdown
-  populateSchoolOptions();
-  
-  // Setup all event listeners
-  setupEventListeners();
-  
-  // Show appropriate initial view
-  if (currentUser) {
-    showDashboard();
-  } else {
-    showView('landing-page');
-  }
-  
-  console.log('EcoLearn App Initialized');
+  console.log('GreenChamp app initializing...');
+  initializeEventListeners();
+  renderChallenges();
+  renderLeaderboard();
+  renderCourses();
+  updateStudentDashboard();
+  showLanding();
+  console.log('GreenChamp app initialized successfully');
 });
 
-function loadUserFromStorage() {
-  // Not using localStorage per instructions, just reset to defaults
-  currentUser = null;
-  userProgress = {
-    points: 0,
-    completedChallenges: [],
-    earnedBadges: [],
-    level: 'Eco-Explorer'
-  };
-}
-
-function populateSchoolOptions() {
-  const schoolSelect = getElement('school');
-  if (!schoolSelect) return;
-  
-  // Clear existing options except the first one
-  while (schoolSelect.children.length > 1) {
-    schoolSelect.removeChild(schoolSelect.lastChild);
-  }
-  
-  appData.schools.forEach(school => {
-    const option = document.createElement('option');
-    option.value = school.name;
-    option.textContent = school.name;
-    schoolSelect.appendChild(option);
-  });
-}
-
-function setupEventListeners() {
+function initializeEventListeners() {
   console.log('Setting up event listeners...');
   
-  // Login buttons - FIXED with proper event prevention
-  const studentLoginBtn = getElement('student-login-btn');
-  const teacherLoginBtn = getElement('teacher-login-btn');
-  const heroStudentBtn = getElement('hero-student-btn');
-  const heroTeacherBtn = getElement('hero-teacher-btn');
-  
-  if (studentLoginBtn) {
-    studentLoginBtn.addEventListener('click', (e) => {
+  // Tab navigation
+  const navItems = document.querySelectorAll('.nav__item');
+  navItems.forEach(item => {
+    item.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
-      console.log('Student login clicked');
-      openLoginModal('student');
+      const tabId = this.getAttribute('data-tab');
+      console.log('Tab clicked:', tabId);
+      switchTab(tabId);
+    });
+  });
+
+  // Role selector
+  const roleSelector = document.getElementById('roleSelector');
+  if (roleSelector) {
+    roleSelector.addEventListener('change', function(e) {
+      currentRole = this.value;
+      console.log('Role changed to:', currentRole);
+      showDashboard(currentRole);
     });
   }
-  
-  if (teacherLoginBtn) {
-    teacherLoginBtn.addEventListener('click', (e) => {
+
+  // Role cards - using event delegation
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.role-card')) {
       e.preventDefault();
       e.stopPropagation();
-      console.log('Teacher login clicked');
-      openLoginModal('teacher');
-    });
-  }
-  
-  if (heroStudentBtn) {
-    heroStudentBtn.addEventListener('click', (e) => {
+      const roleCard = e.target.closest('.role-card');
+      const role = roleCard.getAttribute('data-role');
+      console.log('Role card clicked:', role);
+      currentRole = role;
+      const roleSelector = document.getElementById('roleSelector');
+      if (roleSelector) {
+        roleSelector.value = role;
+      }
+      showDashboard(role);
+    }
+  });
+
+  // Quick actions
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.action-btn')) {
       e.preventDefault();
       e.stopPropagation();
-      console.log('Hero student button clicked');
-      openLoginModal('student');
-    });
-  }
-  
-  if (heroTeacherBtn) {
-    heroTeacherBtn.addEventListener('click', (e) => {
+      const actionBtn = e.target.closest('.action-btn');
+      const action = actionBtn.getAttribute('data-action');
+      console.log('Quick action clicked:', action);
+      handleQuickAction(action);
+    }
+  });
+
+  // Challenge cards
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.challenge-card')) {
       e.preventDefault();
       e.stopPropagation();
-      console.log('Hero teacher button clicked');
-      openLoginModal('teacher');
-    });
-  }
-  
-  // Logout button
-  const logoutBtn = getElement('logout-btn');
-  if (logoutBtn) {
-    logoutBtn.addEventListener('click', (e) => {
+      const challengeCard = e.target.closest('.challenge-card');
+      const challengeIndex = Array.from(challengeCard.parentNode.children).indexOf(challengeCard);
+      const challenge = appData.challenges[challengeIndex];
+      console.log('Challenge card clicked:', challenge);
+      openChallengeModal(challenge);
+    }
+  });
+
+  // Modal functionality
+  const modal = document.getElementById('challengeModal');
+  const modalOverlay = document.getElementById('modalOverlay');
+  const modalClose = document.getElementById('modalClose');
+  const modalCancel = document.getElementById('modalCancel');
+  const modalComplete = document.getElementById('modalComplete');
+
+  if (modalOverlay) {
+    modalOverlay.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
-      logout();
+      closeModal();
     });
   }
-  
-  // MODAL CLOSE BUTTONS - FIXED IMPLEMENTATION
-  setupModalCloseListeners();
-  
-  // Login form
-  const loginForm = getElement('login-form');
-  if (loginForm) {
-    loginForm.addEventListener('submit', handleLogin);
+
+  if (modalClose) {
+    modalClose.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      closeModal();
+    });
   }
-  
-  // Photo upload functionality
-  setupPhotoUploadListeners();
-  
-  // Complete challenge button
-  const completeChallengeBtn = getElement('complete-challenge-btn');
-  if (completeChallengeBtn) {
-    completeChallengeBtn.addEventListener('click', (e) => {
+
+  if (modalCancel) {
+    modalCancel.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      closeModal();
+    });
+  }
+
+  if (modalComplete) {
+    modalComplete.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
       completeChallenge();
     });
   }
-  
-  // Mobile navigation
-  const mobileNavItems = document.querySelectorAll('.mobile-nav__item');
-  mobileNavItems.forEach(item => {
-    item.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      const view = e.currentTarget.dataset.view;
-      if (view) {
-        showView(view);
-        updateMobileNavState(e.currentTarget);
+
+  // Chat functionality
+  const chatInput = document.getElementById('chatInput');
+  const sendButton = document.getElementById('sendMessage');
+
+  if (chatInput) {
+    chatInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        sendChatMessage();
       }
     });
-  });
-  
-  // Leaderboard tabs
-  const tabBtns = document.querySelectorAll('.tab-btn');
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
+  }
+
+  if (sendButton) {
+    sendButton.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
-      const tab = e.target.dataset.tab;
-      if (tab) {
-        switchLeaderboardTab(tab);
+      sendChatMessage();
+    });
+  }
+
+  console.log('Event listeners set up successfully');
+}
+
+function switchTab(tabId) {
+  console.log('Switching to tab:', tabId);
+  
+  // Update navigation
+  const navItems = document.querySelectorAll('.nav__item');
+  navItems.forEach(item => {
+    item.classList.remove('active');
+    if (item.getAttribute('data-tab') === tabId) {
+      item.classList.add('active');
+    }
+  });
+
+  // Update tab content
+  const tabContents = document.querySelectorAll('.tab-content');
+  tabContents.forEach(content => {
+    content.classList.remove('active');
+    if (content.id === tabId) {
+      content.classList.add('active');
+    }
+  });
+
+  // Hide dashboards when switching tabs
+  if (tabId !== 'home') {
+    const landing = document.getElementById('landing');
+    const studentDashboard = document.getElementById('studentDashboard');
+    const teacherDashboard = document.getElementById('teacherDashboard');
+    const adminDashboard = document.getElementById('adminDashboard');
+    
+    if (landing) landing.classList.add('hidden');
+    if (studentDashboard) studentDashboard.classList.add('hidden');
+    if (teacherDashboard) teacherDashboard.classList.add('hidden');
+    if (adminDashboard) adminDashboard.classList.add('hidden');
+  }
+  
+  console.log('Tab switched successfully to:', tabId);
+}
+
+function showLanding() {
+  console.log('Showing landing page');
+  const landing = document.getElementById('landing');
+  const studentDashboard = document.getElementById('studentDashboard');
+  const teacherDashboard = document.getElementById('teacherDashboard');
+  const adminDashboard = document.getElementById('adminDashboard');
+  
+  if (landing) landing.classList.remove('hidden');
+  if (studentDashboard) studentDashboard.classList.add('hidden');
+  if (teacherDashboard) teacherDashboard.classList.add('hidden');
+  if (adminDashboard) adminDashboard.classList.add('hidden');
+}
+
+function showDashboard(role) {
+  console.log('Showing dashboard for role:', role);
+  
+  const landing = document.getElementById('landing');
+  const studentDashboard = document.getElementById('studentDashboard');
+  const teacherDashboard = document.getElementById('teacherDashboard');
+  const adminDashboard = document.getElementById('adminDashboard');
+  
+  // Hide landing
+  if (landing) landing.classList.add('hidden');
+  
+  // Hide all dashboards first
+  if (studentDashboard) studentDashboard.classList.add('hidden');
+  if (teacherDashboard) teacherDashboard.classList.add('hidden');
+  if (adminDashboard) adminDashboard.classList.add('hidden');
+
+  // Show appropriate dashboard
+  switch(role) {
+    case 'student':
+      if (studentDashboard) {
+        studentDashboard.classList.remove('hidden');
+        updateStudentDashboard();
       }
-    });
-  });
-  
-  // Challenge filters
-  const categoryFilter = getElement('category-filter');
-  const difficultyFilter = getElement('difficulty-filter');
-  
-  if (categoryFilter) {
-    categoryFilter.addEventListener('change', (e) => {
-      e.preventDefault();
-      filterChallenges();
-    });
-  }
-  
-  if (difficultyFilter) {
-    difficultyFilter.addEventListener('change', (e) => {
-      e.preventDefault();
-      filterChallenges();
-    });
-  }
-  
-  // KEYBOARD EVENTS - FIXED ESC KEY FUNCTIONALITY
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      closeAllModals();
-    }
-  });
-  
-  console.log('Event listeners setup complete');
-}
-
-// SETUP MODAL CLOSE LISTENERS - ENHANCED FUNCTION
-function setupModalCloseListeners() {
-  console.log('Setting up modal close listeners...');
-  
-  // Close buttons for each modal
-  const closeLoginModalBtn = getElement('close-login-modal');
-  const closeChallengeModalBtn = getElement('close-challenge-modal');
-  const closePhotoModalBtn = getElement('close-photo-modal');
-  const closeBadgeModalBtn = getElement('close-badge-modal');
-  const closeAchievementModalBtn = getElement('close-achievement-modal');
-  
-  if (closeLoginModalBtn) {
-    closeLoginModalBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      closeModal('login-modal');
-    });
-  }
-  
-  if (closeChallengeModalBtn) {
-    closeChallengeModalBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      closeModal('challenge-modal');
-    });
-  }
-  
-  if (closePhotoModalBtn) {
-    closePhotoModalBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      closeModal('photo-upload-modal');
-    });
-  }
-  
-  if (closeBadgeModalBtn) {
-    closeBadgeModalBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      closeModal('badge-detail-modal');
-    });
-  }
-  
-  if (closeAchievementModalBtn) {
-    closeAchievementModalBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      closeModal('achievement-notification');
-    });
-  }
-  
-  // CLICK-OUTSIDE-TO-CLOSE FUNCTIONALITY
-  const modals = ['login-modal', 'challenge-modal', 'photo-upload-modal', 'badge-detail-modal', 'achievement-notification'];
-  
-  modals.forEach(modalId => {
-    const modal = getElement(modalId);
-    if (modal) {
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal || e.target.classList.contains('modal__backdrop')) {
-          closeModal(modalId);
-        }
-      });
-    }
-  });
-  
-  console.log('Modal close listeners setup complete');
-}
-
-// PHOTO UPLOAD LISTENERS - ENHANCED FUNCTION
-function setupPhotoUploadListeners() {
-  const openPhotoModalBtn = getElement('open-photo-modal');
-  const photoInput = getElement('photo-input');
-  const cancelPhotoBtn = getElement('cancel-photo');
-  const confirmPhotoBtn = getElement('confirm-photo');
-  
-  if (openPhotoModalBtn) {
-    openPhotoModalBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      openModal('photo-upload-modal');
-    });
-  }
-  
-  if (photoInput) {
-    photoInput.addEventListener('change', handlePhotoSelection);
-  }
-  
-  if (cancelPhotoBtn) {
-    cancelPhotoBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      resetPhotoUpload();
-      closeModal('photo-upload-modal');
-    });
-  }
-  
-  if (confirmPhotoBtn) {
-    confirmPhotoBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      confirmPhoto();
-    });
-  }
-}
-
-// Authentication Functions
-function openLoginModal(userType) {
-  console.log(`Opening login modal for: ${userType}`);
-  
-  const userTypeSelect = getElement('user-type');
-  const modalTitle = getElement('modal-title');
-  
-  if (userTypeSelect) userTypeSelect.value = userType;
-  if (modalTitle) modalTitle.textContent = userType === 'student' ? 'Student Login' : 'Teacher Login';
-  
-  openModal('login-modal');
-  
-  // Focus on first input
-  setTimeout(() => {
-    const usernameInput = getElement('username');
-    if (usernameInput) usernameInput.focus();
-  }, 100);
-}
-
-function handleLogin(e) {
-  e.preventDefault();
-  e.stopPropagation();
-  
-  console.log('Handling login...');
-  
-  const usernameInput = getElement('username');
-  const schoolSelect = getElement('school');
-  const userTypeSelect = getElement('user-type');
-  
-  if (!usernameInput || !schoolSelect || !userTypeSelect) return;
-  
-  const username = usernameInput.value.trim();
-  const school = schoolSelect.value;
-  const userType = userTypeSelect.value;
-  
-  if (!username || !school || !userType) {
-    alert('Please fill in all fields');
-    return;
-  }
-  
-  currentUser = {
-    name: username,
-    school: school,
-    type: userType
-  };
-  
-  console.log('User logged in:', currentUser);
-  
-  showUserNav();
-  closeModal('login-modal');
-  
-  // Clear form
-  const loginForm = getElement('login-form');
-  if (loginForm) loginForm.reset();
-  
-  showDashboard();
-}
-
-function logout() {
-  console.log('Logging out user...');
-  
-  currentUser = null;
-  userProgress = {
-    points: 0,
-    completedChallenges: [],
-    earnedBadges: [],
-    level: 'Eco-Explorer'
-  };
-  
-  showAuthNav();
-  showView('landing-page');
-}
-
-function showUserNav() {
-  const navAuth = getElement('nav-auth');
-  const navUser = getElement('nav-user');
-  const userInfo = getElement('user-info');
-  
-  if (navAuth) navAuth.classList.add('hidden');
-  if (navUser) navUser.classList.remove('hidden');
-  if (userInfo && currentUser) {
-    userInfo.textContent = `${currentUser.name} (${currentUser.type})`;
-  }
-}
-
-function showAuthNav() {
-  const navAuth = getElement('nav-auth');
-  const navUser = getElement('nav-user');
-  
-  if (navAuth) navAuth.classList.remove('hidden');
-  if (navUser) navUser.classList.add('hidden');
-}
-
-// Navigation Functions - FIXED
-function showView(viewId) {
-  console.log(`Showing view: ${viewId}`);
-  
-  // Hide all main sections
-  const sections = document.querySelectorAll('main > section');
-  sections.forEach(section => {
-    section.classList.add('hidden');
-  });
-  
-  // Show selected view
-  const targetView = getElement(viewId);
-  if (targetView) {
-    targetView.classList.remove('hidden');
-    currentView = viewId;
-  } else {
-    console.error(`View not found: ${viewId}`);
-    return;
-  }
-  
-  // Handle mobile navigation visibility
-  const mobileNav = getElement('mobile-nav');
-  if (mobileNav) {
-    if (viewId === 'landing-page' || !currentUser) {
-      mobileNav.style.display = 'none';
-    } else if (currentUser && currentUser.type === 'student') {
-      mobileNav.style.display = 'flex';
-    }
-  }
-  
-  // Load content based on view
-  switch(viewId) {
-    case 'student-dashboard':
-      updateDashboard();
       break;
-    case 'teacher-dashboard':
-      updateTeacherDashboard();
+    case 'teacher':
+      if (teacherDashboard) {
+        teacherDashboard.classList.remove('hidden');
+      }
       break;
-    case 'challenges-page':
-      loadChallenges();
-      break;
-    case 'leaderboard-page':
-      loadLeaderboard();
-      break;
-    case 'profile-page':
-      updateProfile();
+    case 'admin':
+      if (adminDashboard) {
+        adminDashboard.classList.remove('hidden');
+      }
       break;
   }
+  
+  console.log('Dashboard shown for role:', role);
 }
 
-function showDashboard() {
-  if (!currentUser) {
-    showView('landing-page');
-    return;
-  }
+function updateStudentDashboard() {
+  console.log('Updating student dashboard');
   
-  if (currentUser.type === 'student') {
-    showView('student-dashboard');
-  } else {
-    showView('teacher-dashboard');
-  }
-}
-
-function updateMobileNavState(activeItem) {
-  const mobileNavItems = document.querySelectorAll('.mobile-nav__item');
-  mobileNavItems.forEach(item => item.classList.remove('active'));
-  if (activeItem) {
-    activeItem.classList.add('active');
-  }
-}
-
-// Dashboard Functions
-function updateDashboard() {
-  if (!currentUser || currentUser.type !== 'student') return;
+  const studentName = document.getElementById('studentName');
+  const userPoints = document.getElementById('userPoints');
+  const userLevel = document.getElementById('userLevel');
+  const completedChallengesEl = document.getElementById('completedChallenges');
   
-  console.log('Updating dashboard...');
-  
-  // Update welcome message and level
-  const level = getCurrentLevel();
-  const welcomeEl = getElement('student-welcome');
-  const levelEl = getElement('current-level');
-  const pointsEl = getElement('user-points');
-  
-  if (welcomeEl) welcomeEl.textContent = `Welcome back, ${currentUser.name}!`;
-  if (levelEl) levelEl.textContent = level.name;
-  if (pointsEl) pointsEl.textContent = `${userProgress.points} points`;
+  if (studentName) studentName.textContent = currentUser.name;
+  if (userPoints) userPoints.textContent = currentUser.points;
+  if (userLevel) userLevel.textContent = currentUser.level;
+  if (completedChallengesEl) completedChallengesEl.textContent = currentUser.completedChallenges;
   
   // Update progress bar
-  const progressPercent = getProgressToNextLevel();
-  const progressFill = getElement('progress-fill');
-  if (progressFill) {
-    progressFill.style.width = `${progressPercent}%`;
+  const progressBar = document.querySelector('.progress-bar__fill');
+  if (progressBar) {
+    progressBar.style.width = `${currentUser.xp}%`;
   }
   
-  // Update stats
-  const challengesCompletedEl = getElement('challenges-completed');
-  const schoolRankEl = getElement('school-rank');
-  const envImpactEl = getElement('env-impact');
-  
-  if (challengesCompletedEl) challengesCompletedEl.textContent = userProgress.completedChallenges.length;
-  if (schoolRankEl) schoolRankEl.textContent = `#${getSchoolRank()}`;
-  if (envImpactEl) envImpactEl.textContent = `${calculateEnvironmentalImpact()}kg`;
-  
-  // Update recent badges
-  updateRecentBadges();
+  // Update badges
+  renderUserBadges();
 }
 
-function updateTeacherDashboard() {
-  console.log('Updating teacher dashboard...');
+function renderUserBadges() {
+  const badgesContainer = document.getElementById('userBadges');
+  if (!badgesContainer) return;
   
-  // Mock data for teacher dashboard
-  const classStudentsEl = getElement('class-students');
-  const assignedChallengesEl = getElement('assigned-challenges');
-  const completionRateEl = getElement('completion-rate');
-  
-  if (classStudentsEl) classStudentsEl.textContent = '45';
-  if (assignedChallengesEl) assignedChallengesEl.textContent = '12';
-  if (completionRateEl) completionRateEl.textContent = '78%';
-}
+  badgesContainer.innerHTML = '';
 
-function getCurrentLevel() {
-  for (const level of appData.levels) {
-    if (userProgress.points >= level.minPoints && userProgress.points <= level.maxPoints) {
-      return level;
-    }
-  }
-  return appData.levels[appData.levels.length - 1];
-}
-
-function getProgressToNextLevel() {
-  const currentLevel = getCurrentLevel();
-  const nextLevel = appData.levels.find(level => level.minPoints > userProgress.points);
-  
-  if (!nextLevel) return 100;
-  
-  const currentLevelProgress = userProgress.points - currentLevel.minPoints;
-  const levelRange = nextLevel.minPoints - currentLevel.minPoints;
-  
-  return Math.min(100, (currentLevelProgress / levelRange) * 100);
-}
-
-function getSchoolRank() {
-  return Math.floor(Math.random() * 50) + 1;
-}
-
-function calculateEnvironmentalImpact() {
-  return Math.round(userProgress.completedChallenges.length * 2.5 * 10) / 10;
-}
-
-function updateRecentBadges() {
-  const recentBadgesContainer = getElement('recent-badges');
-  if (!recentBadgesContainer) return;
-  
-  recentBadgesContainer.innerHTML = '';
-  
-  if (userProgress.earnedBadges.length === 0) {
-    recentBadgesContainer.innerHTML = '<p style="color: var(--color-text-secondary);">Complete challenges to earn badges!</p>';
-    return;
-  }
-  
-  userProgress.earnedBadges.slice(-3).forEach(badgeId => {
-    const badge = appData.badges.find(b => b.id === badgeId);
+  currentUser.badges.forEach(badgeName => {
+    const badge = appData.badges.find(b => b.name === badgeName);
     if (badge) {
-      const badgeElement = createBadgeElement(badge);
-      recentBadgesContainer.appendChild(badgeElement);
+      const badgeElement = document.createElement('div');
+      badgeElement.className = 'badge';
+      badgeElement.innerHTML = `
+        <div class="badge__icon">${badge.icon}</div>
+        <div class="badge__name">${badge.name}</div>
+        <div class="badge__description">${badge.description}</div>
+      `;
+      badgesContainer.appendChild(badgeElement);
     }
   });
 }
 
-function createBadgeElement(badge) {
-  const div = document.createElement('div');
-  div.className = 'badge-item';
-  div.innerHTML = `
-    <div class="badge-item__icon">${badge.icon}</div>
-    <div class="badge-item__name">${badge.name}</div>
-    <div class="badge-item__desc">${badge.description}</div>
-  `;
-  
-  // Add click listener to show badge details
-  div.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    showBadgeDetails(badge);
-  });
-  
-  return div;
-}
-
-// BADGE DETAIL MODAL - ENHANCED FUNCTION
-function showBadgeDetails(badge) {
-  console.log('Showing badge details:', badge.name);
-  
-  const badgeDetailTitle = getElement('badge-detail-title');
-  const badgeDetailIcon = getElement('badge-detail-icon');
-  const badgeDetailName = getElement('badge-detail-name');
-  const badgeDetailDescription = getElement('badge-detail-description');
-  const badgeDetailCondition = getElement('badge-detail-condition');
-  
-  if (badgeDetailTitle) badgeDetailTitle.textContent = badge.name;
-  if (badgeDetailIcon) badgeDetailIcon.textContent = badge.icon;
-  if (badgeDetailName) badgeDetailName.textContent = badge.name;
-  if (badgeDetailDescription) badgeDetailDescription.textContent = badge.description;
-  if (badgeDetailCondition) badgeDetailCondition.textContent = badge.condition;
-  
-  openModal('badge-detail-modal');
-}
-
-// Challenge Functions - ENHANCED
-function loadChallenges() {
-  console.log('Loading challenges...');
-  
-  const challengesGrid = getElement('challenges-grid');
+function renderChallenges() {
+  const challengesGrid = document.getElementById('challengesGrid');
   if (!challengesGrid) return;
   
   challengesGrid.innerHTML = '';
-  
-  let challenges = [...appData.challenges];
-  
-  // Apply filters
-  const categoryFilter = getElement('category-filter');
-  const difficultyFilter = getElement('difficulty-filter');
-  
-  if (categoryFilter && categoryFilter.value) {
-    challenges = challenges.filter(c => c.category === categoryFilter.value);
-  }
-  
-  if (difficultyFilter && difficultyFilter.value) {
-    challenges = challenges.filter(c => c.difficulty === difficultyFilter.value);
-  }
-  
-  challenges.forEach(challenge => {
-    const challengeElement = createChallengeCard(challenge);
-    challengesGrid.appendChild(challengeElement);
-  });
-  
-  console.log(`Loaded ${challenges.length} challenges`);
-}
 
-function createChallengeCard(challenge) {
-  const isCompleted = userProgress.completedChallenges.includes(challenge.id);
-  
-  const div = document.createElement('div');
-  div.className = `challenge-card ${isCompleted ? 'challenge-card--completed' : ''}`;
-  div.style.position = 'relative';
-  
-  div.innerHTML = `
-    <div class="challenge-card__header">
-      <div class="challenge-card__meta">
+  appData.challenges.forEach(challenge => {
+    const challengeCard = document.createElement('div');
+    challengeCard.className = 'challenge-card';
+    challengeCard.innerHTML = `
+      <div class="challenge-card__header">
         <div class="challenge-card__icon">${challenge.icon}</div>
-        <div class="challenge-card__category">${challenge.category}</div>
+        <div class="challenge-card__title">${challenge.title}</div>
       </div>
-      <h3 class="challenge-card__title">${challenge.title}</h3>
-    </div>
-    <div class="challenge-card__body">
-      <p class="challenge-card__desc">${challenge.description}</p>
+      <div class="challenge-card__description">${challenge.description}</div>
+      <div class="challenge-card__meta">
+        <div class="meta-item">
+          <span>📊</span>
+          <span>${challenge.difficulty}</span>
+        </div>
+        <div class="meta-item">
+          <span>⏱️</span>
+          <span>${challenge.timeRequired}</span>
+        </div>
+        <div class="meta-item">
+          <span>📁</span>
+          <span>${challenge.category}</span>
+        </div>
+      </div>
       <div class="challenge-card__footer">
-        <span class="challenge-card__difficulty challenge-card__difficulty--${challenge.difficulty.toLowerCase()}">${challenge.difficulty}</span>
-        <span class="challenge-card__points">${challenge.points} pts</span>
+        <div class="points-badge">${challenge.points} points</div>
+        <div class="participants">${challenge.participants} participants</div>
       </div>
-    </div>
-  `;
-  
-  if (!isCompleted) {
-    div.style.cursor = 'pointer';
-    div.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      openChallengeModal(challenge);
-    });
-  }
-  
-  return div;
+    `;
+    challengesGrid.appendChild(challengeCard);
+  });
 }
 
-function filterChallenges() {
-  console.log('Filtering challenges...');
-  loadChallenges();
+function renderLeaderboard() {
+  const leaderboardTable = document.getElementById('leaderboardTable');
+  if (!leaderboardTable) return;
+  
+  leaderboardTable.innerHTML = '';
+
+  appData.leaderboard.forEach(user => {
+    const leaderboardItem = document.createElement('div');
+    leaderboardItem.className = 'leaderboard-item';
+    
+    const rankClass = user.rank <= 3 ? 'rank top-3' : 'rank';
+    
+    leaderboardItem.innerHTML = `
+      <div class="${rankClass}">#${user.rank}</div>
+      <div class="user-info">
+        <h4>${user.name}</h4>
+        <p>${user.school}</p>
+      </div>
+      <div class="points">${user.points}</div>
+      <div class="level">${user.level}</div>
+      <div class="badge-count">${user.badges} badges</div>
+    `;
+
+    leaderboardTable.appendChild(leaderboardItem);
+  });
+}
+
+function renderCourses() {
+  const coursesGrid = document.getElementById('coursesGrid');
+  if (!coursesGrid) return;
+  
+  coursesGrid.innerHTML = '';
+
+  appData.courses.forEach(course => {
+    const courseCard = document.createElement('div');
+    courseCard.className = 'course-card';
+    courseCard.innerHTML = `
+      <div class="course-card__header">
+        <div class="course-card__icon">📚</div>
+        <div class="course-card__title">${course.title}</div>
+      </div>
+      <div class="course-card__description">${course.description}</div>
+      <div class="course-card__meta">
+        <div class="meta-item">
+          <span>📊</span>
+          <span>${course.difficulty}</span>
+        </div>
+        <div class="meta-item">
+          <span>⏱️</span>
+          <span>${course.duration}</span>
+        </div>
+        <div class="meta-item">
+          <span>📖</span>
+          <span>${course.modules} modules</span>
+        </div>
+        <div class="meta-item">
+          <span>⭐</span>
+          <span>${course.rating}/5.0</span>
+        </div>
+      </div>
+      <div class="course-card__footer">
+        <div class="participants">${course.enrolled} enrolled</div>
+        <button class="btn btn--primary btn--sm">Start Course</button>
+      </div>
+    `;
+    coursesGrid.appendChild(courseCard);
+  });
+}
+
+function handleQuickAction(action) {
+  console.log('Handling quick action:', action);
+  switch(action) {
+    case 'new-challenge':
+      switchTab('challenges');
+      break;
+    case 'view-courses':
+      switchTab('learning');
+      break;
+    case 'check-leaderboard':
+      switchTab('leaderboard');
+      break;
+  }
 }
 
 function openChallengeModal(challenge) {
-  console.log('Opening challenge modal:', challenge.title);
-  
-  currentChallenge = challenge;
-  
-  const challengeTitle = getElement('challenge-title');
-  const challengeCategory = getElement('challenge-category');
-  const challengeDifficulty = getElement('challenge-difficulty');
-  const challengePoints = getElement('challenge-points');
-  const challengeDescription = getElement('challenge-description');
-  const challengeInstructions = getElement('challenge-instructions');
-  const photoPreview = getElement('photo-preview');
-  const completeChallengeBtn = getElement('complete-challenge-btn');
-  
-  if (challengeTitle) challengeTitle.textContent = challenge.title;
-  if (challengeCategory) challengeCategory.textContent = challenge.category;
-  if (challengeDifficulty) challengeDifficulty.textContent = challenge.difficulty;
-  if (challengePoints) challengePoints.textContent = `${challenge.points} pts`;
-  if (challengeDescription) challengeDescription.textContent = challenge.description;
-  if (challengeInstructions) challengeInstructions.textContent = challenge.instructions;
-  
-  // Reset photo upload
-  if (photoPreview) photoPreview.classList.add('hidden');
-  if (completeChallengeBtn) completeChallengeBtn.disabled = true;
-  
-  selectedPhoto = null;
-  
-  // Reset photo upload button
-  const openPhotoModalBtn = getElement('open-photo-modal');
-  if (openPhotoModalBtn) {
-    openPhotoModalBtn.textContent = '📷 Add Photo';
-    openPhotoModalBtn.classList.remove('btn--primary');
-    openPhotoModalBtn.classList.add('btn--outline');
-  }
-  
-  openModal('challenge-modal');
-}
+  console.log('Opening challenge modal for:', challenge);
+  selectedChallenge = challenge;
+  const modal = document.getElementById('challengeModal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalBody = document.getElementById('modalBody');
 
-// PHOTO UPLOAD FUNCTIONS - ENHANCED
-function handlePhotoSelection(e) {
-  const file = e.target.files[0];
-  if (!file || !file.type.startsWith('image/')) return;
-  
-  console.log('Photo selected:', file.name);
-  
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    selectedPhoto = e.target.result;
-    
-    // Update confirm button
-    const confirmPhotoBtn = getElement('confirm-photo');
-    if (confirmPhotoBtn) {
-      confirmPhotoBtn.disabled = false;
-    }
-    
-    // Show preview in the photo upload modal
-    const photoUploadLabel = document.querySelector('.photo-upload-label');
-    if (photoUploadLabel) {
-      photoUploadLabel.innerHTML = `
-        <img src="${selectedPhoto}" alt="Selected photo" style="max-width: 100%; max-height: 200px; border-radius: var(--radius-lg);">
-        <span>Photo selected successfully!</span>
-      `;
-    }
-  };
-  reader.readAsDataURL(file);
-}
-
-function confirmPhoto() {
-  if (!selectedPhoto) return;
-  
-  console.log('Photo confirmed');
-  
-  // Update the challenge modal with photo preview
-  const photoPreview = getElement('photo-preview');
-  const previewImage = getElement('preview-image');
-  const completeChallengeBtn = getElement('complete-challenge-btn');
-  
-  if (previewImage) previewImage.src = selectedPhoto;
-  if (photoPreview) photoPreview.classList.remove('hidden');
-  if (completeChallengeBtn) completeChallengeBtn.disabled = false;
-  
-  // Update the photo upload button in challenge modal
-  const openPhotoModalBtn = getElement('open-photo-modal');
-  if (openPhotoModalBtn) {
-    openPhotoModalBtn.textContent = '✅ Photo Uploaded';
-    openPhotoModalBtn.classList.add('btn--primary');
-    openPhotoModalBtn.classList.remove('btn--outline');
-  }
-  
-  closeModal('photo-upload-modal');
-  resetPhotoUpload();
-}
-
-function resetPhotoUpload() {
-  selectedPhoto = null;
-  
-  const photoInput = getElement('photo-input');
-  const confirmPhotoBtn = getElement('confirm-photo');
-  const photoUploadLabel = document.querySelector('.photo-upload-label');
-  
-  if (photoInput) photoInput.value = '';
-  if (confirmPhotoBtn) confirmPhotoBtn.disabled = true;
-  if (photoUploadLabel) {
-    photoUploadLabel.innerHTML = `
-      <span class="photo-upload-icon">📷</span>
-      <span>Click to select photo</span>
+  if (modalTitle) modalTitle.textContent = challenge.title;
+  if (modalBody) {
+    modalBody.innerHTML = `
+      <div class="challenge-details">
+        <div class="challenge-icon" style="font-size: 3rem; text-align: center; margin-bottom: 16px;">
+          ${challenge.icon}
+        </div>
+        <p><strong>Description:</strong> ${challenge.description}</p>
+        <p><strong>Category:</strong> ${challenge.category}</p>
+        <p><strong>Difficulty:</strong> ${challenge.difficulty}</p>
+        <p><strong>Time Required:</strong> ${challenge.timeRequired}</p>
+        <p><strong>Points Reward:</strong> ${challenge.points} points</p>
+        <p><strong>Current Participants:</strong> ${challenge.participants}</p>
+        
+        <div style="margin-top: 20px; padding: 16px; background: var(--color-bg-3); border-radius: 8px;">
+          <h4>How to Complete:</h4>
+          <ol>
+            <li>Read the challenge description carefully</li>
+            <li>Complete the required activity</li>
+            <li>Take photos or gather evidence of completion</li>
+            <li>Click "Complete Challenge" to earn your points</li>
+          </ol>
+        </div>
+      </div>
     `;
   }
+
+  if (modal) modal.classList.remove('hidden');
+}
+
+function closeModal() {
+  console.log('Closing modal');
+  const modal = document.getElementById('challengeModal');
+  if (modal) modal.classList.add('hidden');
+  selectedChallenge = null;
 }
 
 function completeChallenge() {
-  if (!currentChallenge) return;
-  
-  console.log('Completing challenge:', currentChallenge.title);
-  
-  // Add to completed challenges
-  userProgress.completedChallenges.push(currentChallenge.id);
-  userProgress.points += currentChallenge.points;
-  
-  // Check for new badges
-  checkAndAwardBadges();
-  
-  // Update level
-  userProgress.level = getCurrentLevel().name;
-  
-  // Show achievement notification
-  showAchievementNotification('Challenge Complete!', `You earned ${currentChallenge.points} points!`);
-  
-  // Update dashboard
-  if (currentUser && currentUser.type === 'student') {
-    updateDashboard();
-  }
-  
-  // Close modal and refresh challenges
-  closeModal('challenge-modal');
-  if (currentView === 'challenges-page') {
-    loadChallenges();
-  }
-  
-  // Reset photo upload button
-  const openPhotoModalBtn = getElement('open-photo-modal');
-  if (openPhotoModalBtn) {
-    openPhotoModalBtn.textContent = '📷 Add Photo';
-    openPhotoModalBtn.classList.remove('btn--primary');
-    openPhotoModalBtn.classList.add('btn--outline');
+  console.log('Completing challenge:', selectedChallenge);
+  if (selectedChallenge) {
+    // Update user stats
+    currentUser.points += selectedChallenge.points;
+    currentUser.completedChallenges += 1;
+    currentUser.xp = Math.min(100, currentUser.xp + 10); // Add 10 XP, max 100
+
+    // Update dashboard
+    updateStudentDashboard();
+
+    // Show success message
+    alert(`🎉 Congratulations! You've completed "${selectedChallenge.title}" and earned ${selectedChallenge.points} points!`);
+    
+    closeModal();
   }
 }
 
-function checkAndAwardBadges() {
-  const newBadges = [];
+function sendChatMessage() {
+  console.log('Sending chat message');
+  const chatInput = document.getElementById('chatInput');
+  const chatMessages = document.getElementById('chatMessages');
   
-  appData.badges.forEach(badge => {
-    if (!userProgress.earnedBadges.includes(badge.id)) {
-      let shouldAward = false;
-      
-      switch(badge.id) {
-        case 1: // First Steps
-          shouldAward = userProgress.completedChallenges.length >= 1;
-          break;
-        case 2: // Waste Warrior
-          shouldAward = getCompletedChallengesByCategory('Waste Management').length >= 1;
-          break;
-        case 3: // Energy Saver
-          shouldAward = getCompletedChallengesByCategory('Energy Conservation').length >= 1;
-          break;
-        case 4: // Tree Friend
-          shouldAward = getCompletedChallengesByCategory('Biodiversity').length >= 1;
-          break;
-        case 5: // Punjab Guardian
-          shouldAward = getCompletedChallengesByCategory('Punjab-Specific').length >= 1;
-          break;
-      }
-      
-      if (shouldAward) {
-        userProgress.earnedBadges.push(badge.id);
-        newBadges.push(badge);
-      }
-    }
-  });
+  if (!chatInput || !chatMessages) return;
   
-  // Show badge notifications
-  newBadges.forEach((badge, index) => {
-    setTimeout(() => {
-      showAchievementNotification('Badge Earned!', `${badge.icon} ${badge.name}`);
-    }, (index + 1) * 2000);
-  });
-}
+  const message = chatInput.value.trim();
+  if (!message) return;
 
-function getCompletedChallengesByCategory(category) {
-  return userProgress.completedChallenges.filter(challengeId => {
-    const challenge = appData.challenges.find(c => c.id === challengeId);
-    return challenge && challenge.category === category;
-  });
-}
+  // Add user message
+  const userMessage = document.createElement('div');
+  userMessage.className = 'message user-message';
+  userMessage.innerHTML = `
+    <div class="message__avatar">👤</div>
+    <div class="message__content">
+      <p>${message}</p>
+    </div>
+  `;
+  chatMessages.appendChild(userMessage);
 
-// ACHIEVEMENT NOTIFICATION - ENHANCED
-function showAchievementNotification(title, description) {
-  console.log('Showing achievement:', title);
-  
-  const achievementTitle = getElement('achievement-title');
-  const achievementDesc = getElement('achievement-desc');
-  
-  if (achievementTitle) achievementTitle.textContent = title;
-  if (achievementDesc) achievementDesc.textContent = description;
-  
-  openModal('achievement-notification');
-  
-  // Auto-close after 3 seconds
+  // Clear input
+  chatInput.value = '';
+
+  // Generate bot response
   setTimeout(() => {
-    closeModal('achievement-notification');
-  }, 3000);
-}
-
-// Leaderboard Functions
-function loadLeaderboard() {
-  console.log('Loading leaderboard...');
-  loadSchoolsLeaderboard();
-  loadStudentsLeaderboard();
-}
-
-function loadSchoolsLeaderboard() {
-  const schoolsList = getElement('schools-list');
-  if (!schoolsList) return;
-  
-  schoolsList.innerHTML = '';
-  
-  const sortedSchools = [...appData.schools].sort((a, b) => b.points - a.points);
-  
-  sortedSchools.forEach((school, index) => {
-    const div = document.createElement('div');
-    div.className = 'leaderboard-item';
-    div.innerHTML = `
-      <div class="leaderboard-rank">#${index + 1}</div>
-      <div class="leaderboard-info">
-        <div class="leaderboard-name">${school.name}</div>
-        <div class="leaderboard-school">${school.students} students</div>
+    const botResponse = generateBotResponse(message);
+    const botMessage = document.createElement('div');
+    botMessage.className = 'message bot-message';
+    botMessage.innerHTML = `
+      <div class="message__avatar">🤖</div>
+      <div class="message__content">
+        <p>${botResponse}</p>
       </div>
-      <div class="leaderboard-points">${school.points.toLocaleString()}</div>
     `;
-    schoolsList.appendChild(div);
-  });
+    chatMessages.appendChild(botMessage);
+    
+    // Scroll to bottom
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }, 1000);
+
+  // Scroll to bottom
+  chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
-function loadStudentsLeaderboard() {
-  const studentsList = getElement('students-list');
-  if (!studentsList) return;
+function generateBotResponse(userMessage) {
+  const lowerMessage = userMessage.toLowerCase();
   
-  studentsList.innerHTML = '';
-  
-  let sortedStudents = [...appData.sampleStudents];
-  
-  // Add current user if logged in as student
-  if (currentUser && currentUser.type === 'student') {
-    sortedStudents.push({
-      name: currentUser.name,
-      school: currentUser.school,
-      points: userProgress.points,
-      level: userProgress.level,
-      badges: userProgress.earnedBadges.length
-    });
-  }
-  
-  sortedStudents.sort((a, b) => b.points - a.points);
-  
-  sortedStudents.forEach((student, index) => {
-    const div = document.createElement('div');
-    div.className = 'leaderboard-item';
-    if (currentUser && student.name === currentUser.name) {
-      div.style.background = 'var(--color-bg-1)';
-      div.style.borderColor = 'var(--color-primary)';
+  // Find matching response
+  for (const response of appData.chatbotResponses) {
+    if (lowerMessage.includes(response.keyword)) {
+      return response.response;
     }
-    div.innerHTML = `
-      <div class="leaderboard-rank">#${index + 1}</div>
-      <div class="leaderboard-info">
-        <div class="leaderboard-name">${student.name}</div>
-        <div class="leaderboard-school">${student.school}</div>
-      </div>
-      <div class="leaderboard-points">${student.points}</div>
-    `;
-    studentsList.appendChild(div);
-  });
-}
-
-function switchLeaderboardTab(tabName) {
-  console.log('Switching to tab:', tabName);
-  
-  // Update tab buttons
-  const tabBtns = document.querySelectorAll('.tab-btn');
-  tabBtns.forEach(btn => btn.classList.remove('active'));
-  
-  const activeTab = document.querySelector(`[data-tab="${tabName}"]`);
-  if (activeTab) activeTab.classList.add('active');
-  
-  // Show/hide tab content
-  const tabContents = document.querySelectorAll('.tab-content');
-  tabContents.forEach(content => content.classList.remove('active'));
-  
-  const activeContent = getElement(`${tabName}-leaderboard`);
-  if (activeContent) activeContent.classList.add('active');
-}
-
-// Profile Functions
-function updateProfile() {
-  if (!currentUser || currentUser.type !== 'student') return;
-  
-  console.log('Updating profile...');
-  
-  const level = getCurrentLevel();
-  
-  const profileName = getElement('profile-name');
-  const profileLevel = getElement('profile-level');
-  const profilePoints = getElement('profile-points');
-  
-  if (profileName) profileName.textContent = currentUser.name;
-  if (profileLevel) profileLevel.textContent = level.name;
-  if (profilePoints) profilePoints.textContent = `${userProgress.points} points`;
-  
-  updateProfileBadges();
-  updateProfileImpact();
-}
-
-function updateProfileBadges() {
-  const badgesGallery = getElement('profile-badges');
-  if (!badgesGallery) return;
-  
-  badgesGallery.innerHTML = '';
-  
-  if (userProgress.earnedBadges.length === 0) {
-    badgesGallery.innerHTML = '<p style="color: var(--color-text-secondary); text-align: center;">Complete challenges to earn badges!</p>';
-    return;
   }
-  
-  userProgress.earnedBadges.forEach(badgeId => {
-    const badge = appData.badges.find(b => b.id === badgeId);
-    if (badge) {
-      const badgeElement = createBadgeElement(badge);
-      badgesGallery.appendChild(badgeElement);
-    }
-  });
-}
 
-function updateProfileImpact() {
-  const impactContainer = getElement('profile-impact');
-  if (!impactContainer) return;
-  
-  impactContainer.innerHTML = '';
-  
-  const impacts = [
-    { value: `${calculateEnvironmentalImpact()}kg`, label: 'Waste Reduced' },
-    { value: `${userProgress.completedChallenges.length * 5}kWh`, label: 'Energy Saved' },
-    { value: `${Math.round(userProgress.completedChallenges.length * 0.1 * 10) / 10}`, label: 'CO₂ Tonnes Saved' },
-    { value: `${Math.floor(userProgress.completedChallenges.length / 3)}`, label: 'Trees Planted' }
-  ];
-  
-  impacts.forEach(impact => {
-    const div = document.createElement('div');
-    div.className = 'impact-item';
-    div.innerHTML = `
-      <div class="impact-item__value">${impact.value}</div>
-      <div class="impact-item__label">${impact.label}</div>
-    `;
-    impactContainer.appendChild(div);
-  });
+  // Default responses for common queries
+  if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
+    return "Hello! I'm here to help you learn about environmental topics and guide you through your eco-journey. What would you like to know?";
+  }
+
+  if (lowerMessage.includes('help')) {
+    return "I can help you with information about climate change, renewable energy, environmental careers, and challenges you can participate in. Just ask me anything!";
+  }
+
+  if (lowerMessage.includes('points') || lowerMessage.includes('score')) {
+    return "You can earn points by completing environmental challenges! Each challenge has different point values based on difficulty. Check out the Challenges tab to see what's available.";
+  }
+
+  if (lowerMessage.includes('badge') || lowerMessage.includes('achievement')) {
+    return "Badges are earned by completing specific activities repeatedly. For example, plant 10 trees to get the 'Tree Hugger' badge! Check your profile to see your current badges.";
+  }
+
+  // Generic fallback
+  return "That's an interesting question! While I don't have specific information about that topic, I'd recommend checking our learning modules or speaking with your teacher for more detailed guidance.";
 }
