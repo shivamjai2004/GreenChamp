@@ -3,396 +3,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoLearn Platform - Transform Environmental Learning Through Gamification</title>
+    <title>GreenChamp - Environmental Education Platform</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Navigation Header -->
-    <header class="header" id="main-header">
-        <nav class="nav">
-            <div class="nav__brand">
-                <span class="nav__logo">🌱</span>
-                <span class="nav__title">EcoLearn</span>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <div class="logo">
+                    <span class="logo__icon">🌱</span>
+                    <span class="logo__text">GreenChamp</span>
+                </div>
+                <nav class="nav">
+                    <button class="nav__item active" data-tab="home">Home</button>
+                    <button class="nav__item" data-tab="challenges">Challenges</button>
+                    <button class="nav__item" data-tab="leaderboard">Leaderboard</button>
+                    <button class="nav__item" data-tab="learning">Learning</button>
+                    <button class="nav__item" data-tab="chat">AI Chat</button>
+                </nav>
+                <div class="header__actions">
+                    <select class="role-selector" id="roleSelector">
+                        <option value="student">Student View</option>
+                        <option value="teacher">Teacher View</option>
+                        <option value="admin">Admin View</option>
+                    </select>
+                </div>
             </div>
-            <div class="nav__auth" id="nav-auth">
-                <button class="btn btn--outline btn--sm" id="student-login-btn">Student Login</button>
-                <button class="btn btn--primary btn--sm" id="teacher-login-btn">Teacher Login</button>
-            </div>
-            <div class="nav__user hidden" id="nav-user">
-                <span id="user-info"></span>
-                <button class="btn btn--outline btn--sm" id="logout-btn">Logout</button>
-            </div>
-        </nav>
+        </div>
     </header>
 
-    <!-- Main Content Container -->
-    <main id="main-content">
-        <!-- Landing Page -->
-        <section class="landing" id="landing-page">
-            <div class="hero">
-                <div class="container">
-                    <div class="hero__content">
-                        <h1 class="hero__title">Transform Environmental Learning Through Gamification</h1>
-                        <p class="hero__subtitle">Engaging Punjab's students in real environmental action through interactive challenges, competitions, and rewards.</p>
-                        <div class="hero__actions">
-                            <button class="btn btn--primary btn--lg" id="hero-student-btn">Start as Student</button>
-                            <button class="btn btn--outline btn--lg" id="hero-teacher-btn">Join as Teacher</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="features">
-                <div class="container">
-                    <h2 class="features__title">Key Features</h2>
-                    <div class="features__grid">
-                        <div class="feature-card">
-                            <div class="feature-card__icon">🎯</div>
-                            <h3 class="feature-card__title">Interactive Challenges</h3>
-                            <p class="feature-card__desc">Real-world environmental actions with photo verification and point rewards</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-card__icon">🏆</div>
-                            <h3 class="feature-card__title">School Competitions</h3>
-                            <p class="feature-card__desc">Inter-school leaderboards and monthly environmental challenges</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-card__icon">👨‍🏫</div>
-                            <h3 class="feature-card__title">Teacher Tools</h3>
-                            <p class="feature-card__desc">Progress monitoring, custom challenges, and curriculum alignment</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-card__icon">🌱</div>
-                            <h3 class="feature-card__title">Real Impact</h3>
-                            <p class="feature-card__desc">Track actual environmental improvements and conservation metrics</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="stats">
-                <div class="container">
-                    <div class="stats__grid">
-                        <div class="stat-item">
-                            <div class="stat-item__number">15,000+</div>
-                            <div class="stat-item__label">Punjab Schools Ready</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-item__number">70%</div>
-                            <div class="stat-item__label">Better Learning Retention</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-item__number">2.3 tons</div>
-                            <div class="stat-item__label">CO₂ Reduced</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Student Dashboard -->
-        <section class="dashboard hidden" id="student-dashboard">
-            <div class="container">
-                <div class="dashboard__header">
-                    <div class="user-welcome">
-                        <h1 id="student-welcome">Welcome back, Eco-Explorer!</h1>
-                        <div class="level-progress">
-                            <div class="level-info">
-                                <span class="level-badge" id="current-level">Eco-Explorer</span>
-                                <span class="points-display" id="user-points">0 points</span>
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Home Tab -->
+            <div class="tab-content active" id="home">
+                <!-- Role Selection Landing -->
+                <div class="landing" id="landing">
+                    <div class="hero">
+                        <h1>Welcome to GreenChamp</h1>
+                        <p>Join the gamified environmental education revolution. Learn, compete, and make a real impact on our planet!</p>
+                        <div class="role-cards">
+                            <div class="role-card" data-role="student">
+                                <div class="role-card__icon">🎓</div>
+                                <h3>Student</h3>
+                                <p>Take challenges, earn badges, and compete with peers</p>
+                                <button class="btn btn--primary">Get Started</button>
                             </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+                            <div class="role-card" data-role="teacher">
+                                <div class="role-card__icon">👩‍🏫</div>
+                                <h3>Teacher</h3>
+                                <p>Manage courses and track student progress</p>
+                                <button class="btn btn--primary">Get Started</button>
+                            </div>
+                            <div class="role-card" data-role="admin">
+                                <div class="role-card__icon">⚙️</div>
+                                <h3>Admin</h3>
+                                <p>Configure system and monitor platform analytics</p>
+                                <button class="btn btn--primary">Get Started</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="dashboard__stats">
-                    <div class="stat-card">
-                        <div class="stat-card__icon">✅</div>
-                        <div class="stat-card__number" id="challenges-completed">0</div>
-                        <div class="stat-card__label">Challenges Completed</div>
+                <!-- Student Dashboard -->
+                <div class="dashboard hidden" id="studentDashboard">
+                    <div class="dashboard__header">
+                        <h1>Welcome back, <span id="studentName">Aarav Sharma</span>!</h1>
+                        <div class="user-stats">
+                            <div class="stat-card">
+                                <div class="stat-card__icon">🏆</div>
+                                <div class="stat-card__content">
+                                    <span class="stat-card__value" id="userPoints">2450</span>
+                                    <span class="stat-card__label">Points</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-card__icon">⭐</div>
+                                <div class="stat-card__content">
+                                    <span class="stat-card__value" id="userLevel">Climate Champion</span>
+                                    <span class="stat-card__label">Level</span>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-card__icon">🎯</div>
+                                <div class="stat-card__content">
+                                    <span class="stat-card__value" id="completedChallenges">15</span>
+                                    <span class="stat-card__label">Challenges</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-card__icon">🏫</div>
-                        <div class="stat-card__number" id="school-rank">#0</div>
-                        <div class="stat-card__label">School Ranking</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-card__icon">🌍</div>
-                        <div class="stat-card__number" id="env-impact">0kg</div>
-                        <div class="stat-card__label">Environmental Impact</div>
+
+                    <div class="dashboard__content">
+                        <div class="dashboard__left">
+                            <!-- Progress Section -->
+                            <div class="card">
+                                <div class="card__body">
+                                    <h3>Your Progress</h3>
+                                    <div class="progress-section">
+                                        <div class="progress-bar">
+                                            <div class="progress-bar__fill" style="width: 89%"></div>
+                                        </div>
+                                        <span class="progress-text">89 XP to next level</span>
+                                    </div>
+                                    <div class="impact-stats">
+                                        <div class="impact-stat">
+                                            <span class="impact-stat__icon">🌍</span>
+                                            <span class="impact-stat__text">150.5 kg CO₂ saved</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Recent Badges -->
+                            <div class="card">
+                                <div class="card__body">
+                                    <h3>Recent Badges</h3>
+                                    <div class="badges-grid" id="userBadges">
+                                        <!-- Badges will be populated by JavaScript -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dashboard__right">
+                            <!-- Quick Actions -->
+                            <div class="card">
+                                <div class="card__body">
+                                    <h3>Quick Actions</h3>
+                                    <div class="quick-actions">
+                                        <button class="action-btn" data-action="new-challenge">
+                                            <span class="action-btn__icon">🎯</span>
+                                            <span>Take Challenge</span>
+                                        </button>
+                                        <button class="action-btn" data-action="view-courses">
+                                            <span class="action-btn__icon">📚</span>
+                                            <span>Browse Courses</span>
+                                        </button>
+                                        <button class="action-btn" data-action="check-leaderboard">
+                                            <span class="action-btn__icon">🏆</span>
+                                            <span>View Rankings</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="recent-badges">
-                    <h3>Recent Achievements</h3>
-                    <div class="badges-grid" id="recent-badges">
-                        <!-- Badges will be populated by JavaScript -->
+                <!-- Teacher Dashboard -->
+                <div class="dashboard hidden" id="teacherDashboard">
+                    <div class="dashboard__header">
+                        <h1>Teacher Dashboard</h1>
+                        <p>Manage courses and monitor student progress</p>
+                    </div>
+                    <div class="teacher-stats">
+                        <div class="stat-card">
+                            <div class="stat-card__icon">👥</div>
+                            <div class="stat-card__content">
+                                <span class="stat-card__value">156</span>
+                                <span class="stat-card__label">Students</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card__icon">📖</div>
+                            <div class="stat-card__content">
+                                <span class="stat-card__value">12</span>
+                                <span class="stat-card__label">Courses</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card__icon">✅</div>
+                            <div class="stat-card__content">
+                                <span class="stat-card__value">89%</span>
+                                <span class="stat-card__label">Completion Rate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Dashboard -->
+                <div class="dashboard hidden" id="adminDashboard">
+                    <div class="dashboard__header">
+                        <h1>Admin Dashboard</h1>
+                        <p>System configuration and analytics</p>
+                    </div>
+                    <div class="admin-stats">
+                        <div class="stat-card">
+                            <div class="stat-card__icon">👥</div>
+                            <div class="stat-card__content">
+                                <span class="stat-card__value">2,450</span>
+                                <span class="stat-card__label">Total Users</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card__icon">🎯</div>
+                            <div class="stat-card__content">
+                                <span class="stat-card__value">1,250</span>
+                                <span class="stat-card__label">Active Challenges</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card__icon">🌍</div>
+                            <div class="stat-card__content">
+                                <span class="stat-card__value">50.2T</span>
+                                <span class="stat-card__label">CO₂ Saved</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Teacher Dashboard -->
-        <section class="dashboard hidden" id="teacher-dashboard">
-            <div class="container">
-                <h1>Teacher Dashboard</h1>
-                <div class="teacher-stats">
-                    <div class="stat-card">
-                        <div class="stat-card__icon">👥</div>
-                        <div class="stat-card__number" id="class-students">0</div>
-                        <div class="stat-card__label">Active Students</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-card__icon">📋</div>
-                        <div class="stat-card__number" id="assigned-challenges">0</div>
-                        <div class="stat-card__label">Challenges Assigned</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-card__icon">📊</div>
-                        <div class="stat-card__number" id="completion-rate">0%</div>
-                        <div class="stat-card__label">Completion Rate</div>
-                    </div>
-                </div>
-                <div class="teacher-tools">
-                    <button class="btn btn--primary">Create Challenge</button>
-                    <button class="btn btn--outline">View Reports</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Challenges Page -->
-        <section class="challenges-page hidden" id="challenges-page">
-            <div class="container">
+            <!-- Challenges Tab -->
+            <div class="tab-content" id="challenges">
                 <div class="challenges-header">
                     <h1>Environmental Challenges</h1>
-                    <div class="challenges-filters">
-                        <select class="form-control" id="category-filter">
-                            <option value="">All Categories</option>
-                            <option value="Energy Conservation">Energy Conservation</option>
-                            <option value="Waste Management">Waste Management</option>
-                            <option value="Water Conservation">Water Conservation</option>
-                            <option value="Biodiversity">Biodiversity</option>
-                            <option value="Punjab-Specific">Punjab-Specific</option>
-                        </select>
-                        <select class="form-control" id="difficulty-filter">
-                            <option value="">All Difficulties</option>
-                            <option value="Easy">Easy</option>
-                            <option value="Medium">Medium</option>
-                            <option value="Hard">Hard</option>
-                        </select>
-                    </div>
+                    <p>Complete challenges to earn points and badges while making a positive environmental impact</p>
                 </div>
-                <div class="challenges-grid" id="challenges-grid">
+                <div class="challenges-grid" id="challengesGrid">
                     <!-- Challenges will be populated by JavaScript -->
                 </div>
             </div>
-        </section>
 
-        <!-- Leaderboard Page -->
-        <section class="leaderboard-page hidden" id="leaderboard-page">
-            <div class="container">
-                <h1>School Competition Leaderboard</h1>
-                <div class="leaderboard-tabs">
-                    <button class="tab-btn active" data-tab="schools">Schools</button>
-                    <button class="tab-btn" data-tab="students">Students</button>
+            <!-- Leaderboard Tab -->
+            <div class="tab-content" id="leaderboard">
+                <div class="leaderboard-header">
+                    <h1>Leaderboard</h1>
+                    <p>See how you rank against other environmental champions</p>
                 </div>
-                <div class="leaderboard-content">
-                    <div class="tab-content active" id="schools-leaderboard">
-                        <div class="leaderboard-list" id="schools-list">
-                            <!-- School leaderboard will be populated by JavaScript -->
+                <div class="leaderboard-table" id="leaderboardTable">
+                    <!-- Leaderboard will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Learning Tab -->
+            <div class="tab-content" id="learning">
+                <div class="learning-header">
+                    <h1>Learning Modules</h1>
+                    <p>Expand your environmental knowledge with our comprehensive courses</p>
+                </div>
+                <div class="courses-grid" id="coursesGrid">
+                    <!-- Courses will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- AI Chat Tab -->
+            <div class="tab-content" id="chat">
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <h1>🤖 EcoBot - Your Environmental Assistant</h1>
+                        <p>Ask me anything about environmental science, climate change, or career guidance!</p>
+                    </div>
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message bot-message">
+                            <div class="message__avatar">🤖</div>
+                            <div class="message__content">
+                                <p>Hello! I'm EcoBot, your environmental education assistant. I can help you with:</p>
+                                <ul>
+                                    <li>Climate change information</li>
+                                    <li>Renewable energy guidance</li>
+                                    <li>Environmental career advice</li>
+                                    <li>Challenge recommendations</li>
+                                </ul>
+                                <p>What would you like to learn about today?</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="tab-content" id="students-leaderboard">
-                        <div class="leaderboard-list" id="students-list">
-                            <!-- Student leaderboard will be populated by JavaScript -->
-                        </div>
+                    <div class="chat-input">
+                        <input type="text" id="chatInput" placeholder="Type your question here..." class="form-control">
+                        <button id="sendMessage" class="btn btn--primary">Send</button>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Profile Page -->
-        <section class="profile-page hidden" id="profile-page">
-            <div class="container">
-                <div class="profile-header">
-                    <div class="profile-avatar">
-                        <div class="avatar-circle" id="profile-avatar">🌱</div>
-                    </div>
-                    <div class="profile-info">
-                        <h1 id="profile-name">Student Name</h1>
-                        <div class="profile-level" id="profile-level">Eco-Explorer</div>
-                        <div class="profile-points" id="profile-points">0 points</div>
-                    </div>
-                </div>
-                <div class="profile-badges">
-                    <h3>Achievements</h3>
-                    <div class="badges-gallery" id="profile-badges">
-                        <!-- Badges will be populated by JavaScript -->
-                    </div>
-                </div>
-                <div class="profile-impact">
-                    <h3>Environmental Impact</h3>
-                    <div class="impact-stats" id="profile-impact">
-                        <!-- Impact stats will be populated by JavaScript -->
-                    </div>
-                </div>
-            </div>
-        </section>
+        </div>
     </main>
 
-    <!-- Mobile Navigation -->
-    <nav class="mobile-nav" id="mobile-nav">
-        <button class="mobile-nav__item" data-view="student-dashboard">
-            <span class="mobile-nav__icon">🏠</span>
-            <span class="mobile-nav__label">Home</span>
-        </button>
-        <button class="mobile-nav__item" data-view="challenges-page">
-            <span class="mobile-nav__icon">🎯</span>
-            <span class="mobile-nav__label">Challenges</span>
-        </button>
-        <button class="mobile-nav__item" data-view="leaderboard-page">
-            <span class="mobile-nav__icon">🏆</span>
-            <span class="mobile-nav__label">Leaderboard</span>
-        </button>
-        <button class="mobile-nav__item" data-view="profile-page">
-            <span class="mobile-nav__icon">👤</span>
-            <span class="mobile-nav__label">Profile</span>
-        </button>
-    </nav>
-
-    <!-- Login Modal -->
-    <div class="modal" id="login-modal">
-        <div class="modal__backdrop"></div>
-        <div class="modal__content">
-            <button class="modal__close" id="close-login-modal" aria-label="Close">❌</button>
-            <div class="modal__header">
-                <h2 id="modal-title">Student Login</h2>
-            </div>
-            <div class="modal__body">
-                <form id="login-form">
-                    <div class="form-group">
-                        <label class="form-label" for="username">Name</label>
-                        <input type="text" class="form-control" id="username" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="school">School</label>
-                        <select class="form-control" id="school" required>
-                            <option value="">Select your school</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="user-type">Login as</label>
-                        <select class="form-control" id="user-type" required>
-                            <option value="student">Student</option>
-                            <option value="teacher">Teacher</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn--primary btn--full-width">Login</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
     <!-- Challenge Modal -->
-    <div class="modal" id="challenge-modal">
-        <div class="modal__backdrop"></div>
-        <div class="modal__content modal__content--large">
-            <button class="modal__close" id="close-challenge-modal" aria-label="Close">❌</button>
-            <div class="modal__header">
-                <h2 id="challenge-title">Challenge Title</h2>
-            </div>
-            <div class="modal__body">
-                <div class="challenge-details">
-                    <div class="challenge-info">
-                        <span class="challenge-category" id="challenge-category">Category</span>
-                        <span class="challenge-difficulty" id="challenge-difficulty">Difficulty</span>
-                        <span class="challenge-points" id="challenge-points">Points</span>
-                    </div>
-                    <p class="challenge-description" id="challenge-description">Description</p>
-                    <div class="challenge-instructions">
-                        <h4>Instructions:</h4>
-                        <p id="challenge-instructions">Instructions</p>
-                    </div>
-                </div>
-                
-                <!-- Photo Upload Modal -->
-                <div class="photo-upload-section">
-                    <h4>Upload Verification Photo</h4>
-                    <button class="btn btn--outline" id="open-photo-modal">📷 Add Photo</button>
-                    <div class="photo-preview hidden" id="photo-preview">
-                        <img id="preview-image" alt="Preview">
-                        <p>Photo uploaded successfully!</p>
-                    </div>
-                </div>
-                
-                <div class="challenge-actions">
-                    <button class="btn btn--primary" id="complete-challenge-btn" disabled>Complete Challenge</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Photo Upload Modal -->
-    <div class="modal" id="photo-upload-modal">
-        <div class="modal__backdrop"></div>
+    <div class="modal hidden" id="challengeModal">
+        <div class="modal__overlay" id="modalOverlay"></div>
         <div class="modal__content">
-            <button class="modal__close" id="close-photo-modal" aria-label="Close">❌</button>
             <div class="modal__header">
-                <h2>Upload Verification Photo</h2>
+                <h2 id="modalTitle">Challenge Details</h2>
+                <button class="modal__close" id="modalClose">&times;</button>
             </div>
-            <div class="modal__body">
-                <div class="photo-upload">
-                    <label for="photo-input" class="photo-upload-label">
-                        <span class="photo-upload-icon">📷</span>
-                        <span>Click to select photo</span>
-                    </label>
-                    <input type="file" id="photo-input" accept="image/*" style="display: none;">
-                </div>
-                <div class="photo-upload-actions">
-                    <button class="btn btn--outline" id="cancel-photo">Cancel</button>
-                    <button class="btn btn--primary" id="confirm-photo" disabled>Confirm Photo</button>
-                </div>
+            <div class="modal__body" id="modalBody">
+                <!-- Challenge details will be populated by JavaScript -->
             </div>
-        </div>
-    </div>
-
-    <!-- Badge Detail Modal -->
-    <div class="modal" id="badge-detail-modal">
-        <div class="modal__backdrop"></div>
-        <div class="modal__content">
-            <button class="modal__close" id="close-badge-modal" aria-label="Close">❌</button>
-            <div class="modal__header">
-                <h2 id="badge-detail-title">Badge Details</h2>
-            </div>
-            <div class="modal__body">
-                <div class="badge-detail-content">
-                    <div class="badge-detail-icon" id="badge-detail-icon">🏆</div>
-                    <div class="badge-detail-info">
-                        <h3 id="badge-detail-name">Badge Name</h3>
-                        <p id="badge-detail-description">Badge description</p>
-                        <div class="badge-detail-condition">
-                            <strong>Condition:</strong> <span id="badge-detail-condition">Badge condition</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Achievement Notification Modal -->
-    <div class="modal" id="achievement-notification">
-        <div class="modal__backdrop"></div>
-        <div class="modal__content modal__content--notification">
-            <button class="modal__close" id="close-achievement-modal" aria-label="Close">❌</button>
-            <div class="achievement-content">
-                <div class="achievement-icon" id="achievement-icon">🎉</div>
-                <div class="achievement-text">
-                    <div class="achievement-title" id="achievement-title">Achievement Unlocked!</div>
-                    <div class="achievement-desc" id="achievement-desc">You've earned a new badge!</div>
-                </div>
+            <div class="modal__footer">
+                <button class="btn btn--secondary" id="modalCancel">Cancel</button>
+                <button class="btn btn--primary" id="modalComplete">Complete Challenge</button>
             </div>
         </div>
     </div>
